@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bf0y0itnq4o1p"]
+
+[ext_resource type="PackedScene" uid="uid://2nlhhjl40tvt" path="res://dragdropcontrol/card.tscn" id="1_r7acv"]
+[ext_resource type="Script" path="res://mouse_indicator.gd" id="3_6rqiq"]
+[ext_resource type="Texture2D" uid="uid://cyjlofoiad46u" path="res://icon.svg" id="3_rec5p"]
+[ext_resource type="PackedScene" uid="uid://cf2e86lw05mot" path="res://multiplayer/lobby_ui.tscn" id="4_iq460"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Card" parent="." instance=ExtResource("1_r7acv")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LobbyUI" parent="CanvasLayer" instance=ExtResource("4_iq460")]
+
+[node name="MouseIndicator" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_rec5p")
+script = ExtResource("3_6rqiq")

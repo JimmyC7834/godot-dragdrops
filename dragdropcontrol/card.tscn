@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://2nlhhjl40tvt"]
+
+[ext_resource type="Texture2D" uid="uid://tmoa2gda5dcq" path="res://ccs_w113/download/ccs_w66_001.png" id="1_3wnke"]
+[ext_resource type="Script" path="res://dragdropcontrol/panelcard.gd" id="2_ugm1l"]
+[ext_resource type="Texture2D" uid="uid://cslf0mhjhmnp5" path="res://ccs_w113/Weiß_Schwarz_cardback.png" id="3_twrtr"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7r2gp"]
+properties/0/path = NodePath(".:is_mouse_down")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:scale")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[node name="Card" type="Sprite2D"]
+position = Vector2(237, 226)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_3wnke")
+script = ExtResource("2_ugm1l")
+card_back_texture = ExtResource("3_twrtr")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_7r2gp")

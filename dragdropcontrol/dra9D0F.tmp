@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf0y0itnq4o1p"]
+
+[ext_resource type="Texture2D" uid="uid://tmoa2gda5dcq" path="res://ccs_w113/download/ccs_w66_001.png" id="1_vmqb3"]
+[ext_resource type="Script" path="res://dragdropcentro/dragdropcontrol.gd" id="2_hkchv"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(237, 226)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_vmqb3")
+script = ExtResource("2_hkchv")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(237, 226)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_vmqb3")
+script = ExtResource("2_hkchv")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(237, 226)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_vmqb3")
+script = ExtResource("2_hkchv")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(237, 226)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_vmqb3")
+script = ExtResource("2_hkchv")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(237, 226)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_vmqb3")
+script = ExtResource("2_hkchv")
+
+[node name="Camera2D" type="Camera2D" parent="."]

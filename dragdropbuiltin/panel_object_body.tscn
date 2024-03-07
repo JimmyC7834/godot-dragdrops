@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://iyvmww1y045q"]
+
+[ext_resource type="Script" path="res://dragdrop3d/dragdropbody3d.gd" id="1_uhi4e"]
+[ext_resource type="Texture2D" uid="uid://tmoa2gda5dcq" path="res://ccs_w113/download/ccs_w66_001.png" id="2_sg0fo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sxwde"]
+size = Vector3(4, 0.1, 5.6)
+
+[node name="PanelObjectBody" type="CharacterBody3D"]
+script = ExtResource("1_uhi4e")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 0, 0)
+texture = ExtResource("2_sg0fo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_sxwde")
