@@ -6,6 +6,8 @@ const DRAG_THRESHOLD = 5
 var dragging: DragDropObject
 var hovering: DragDropObject
 
+var original_position: Vector2
+
 func _enter_tree():
     set_multiplayer_authority(name.to_int())
     pass
@@ -17,13 +19,12 @@ func _input(event):
     hovering = choose_dragdrop_object()
 
     if hovering != null:
-        #print("hovering ", hovering.name)
         if Input.is_action_just_pressed("LMB") and dragging == null:
-            print("picked ", hovering.name)
-            hovering.start_dragging()
+            original_position = global_position
+        elif Input.is_action_just_released("LMB") and dragging == null:
             hovering.push_to_front()
-            dragging = hovering
-        elif Input.is_action_just_pressed("RMB"):
+            hovering.click()
+        elif Input.is_action_just_pressed("RMB") and dragging == null:
             hovering.flip()
     
     if dragging != null:
@@ -38,8 +39,8 @@ func _input(event):
         
         # drop the card
         if Input.is_action_just_released("LMB"):
-            #if hovering != null:
-                #hovering.dropped_by(dragging)
+            if hovering != null:
+                hovering.dropped_by(dragging)
             dragging.end_dragging()
             print(dragging.name, " dropped")
             dragging = null
@@ -47,8 +48,15 @@ func _input(event):
     if event is InputEventMouseMotion:
         global_position = get_global_mouse_position()
         
-        if dragging != null:
+        if dragging == null:
+            if hovering != null and original_position.distance_to(global_position) > DRAG_THRESHOLD and Input.is_action_pressed("LMB"):
+                print("picked ", hovering.name)
+                hovering.start_dragging()
+                hovering.push_to_front()
+                dragging = hovering
+        else:
             dragging.drag(event.relative)
+        
 
 func choose_dragdrop_object() -> DragDropObject:
     var cards: Array[Area2D] = get_overlapping_areas().filter(

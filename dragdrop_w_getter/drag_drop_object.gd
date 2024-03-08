@@ -3,16 +3,18 @@ extends Area2D
 
 @export var texture: Texture2D
 
-@export var collision_shape: CollisionShape2D
-
 @export var is_dragging: bool = false
 @export var degree: int = 0
+@export var can_drag: bool = true
+@export var can_be_dropped: bool = true
+@export var can_click: bool = true
 
 var front: Sprite2D
 
 var rotate_span: float = 0.1
 var flip_span: float = 0.1
 var width: int
+
 #signal on_clicked
 #signal on_dragged
 #signal on_dropped
@@ -34,7 +36,8 @@ func _ready():
     collision_shape.shape.size = texture.get_size() * front.scale   
 
 func start_dragging():
-    _set_dragging.rpc(true)
+    if can_drag:
+        _set_dragging.rpc(true)
 
 func end_dragging():
     _set_dragging.rpc(false)
@@ -59,11 +62,12 @@ func _move_to(pos: Vector2):
     global_position = pos
 
 func dropped_by(d: DragDropObject):
-    _dropped_by.rpc(d)
+    if can_be_dropped:
+        pass
 
-@rpc("any_peer", "call_local", "reliable")
-func _dropped_by(d: DragDropObject):
-    print(name, " dropped by ", d.name)
+func click():
+    if can_click:
+        print("clicked ", name)
 
 func push_to_front():
     DragDropServer.push_to_front(self)
